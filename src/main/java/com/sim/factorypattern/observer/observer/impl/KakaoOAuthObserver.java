@@ -1,8 +1,8 @@
-package com.sim.factorypattern.observer.impl;
+package com.sim.factorypattern.observer.observer.impl;
 
 import com.sim.factorypattern.dto.OAuthUserInfo;
 import com.sim.factorypattern.dto.Provider;
-import com.sim.factorypattern.observer.AbstractOAuthObserver;
+import com.sim.factorypattern.observer.observer.AbstractOAuthObserver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

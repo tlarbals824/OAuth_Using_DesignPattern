@@ -1,13 +1,14 @@
 package com.sim.factorypattern.config;
 
-import com.sim.factorypattern.observer.AbstractOAuthObserver;
-import com.sim.factorypattern.subject.AbstractOAuthSubject;
+import com.sim.factorypattern.observer.observer.AbstractOAuthObserver;
+import com.sim.factorypattern.observer.subject.AbstractOAuthSubject;
 import com.sim.factorypattern.util.ApplicationContextUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collection;
 import java.util.Map;
 
 @Configuration
@@ -17,16 +18,18 @@ public class OAuthConfig {
 
     @Bean
     public AbstractOAuthSubject abstractOAuthSubject(){
-        AbstractOAuthSubject abstractOAuthSubject = new AbstractOAuthSubject();
-        Map<String, AbstractOAuthObserver> oAuthObserverMap = getOAuthObserverMap();
-        for (AbstractOAuthObserver oAuthObserver : oAuthObserverMap.values()) {
+        final AbstractOAuthSubject abstractOAuthSubject = new AbstractOAuthSubject();
+        Collection<AbstractOAuthObserver> oAuthObserverCollection = getOAuthObserverMap(AbstractOAuthObserver.class).values();
+        for (AbstractOAuthObserver oAuthObserver : oAuthObserverCollection) {
             abstractOAuthSubject.registerObserver(oAuthObserver);
         }
+//        final ApplicationContext applicationContext = ApplicationContextUtils.getApplicationContext();
+//        abstractOAuthSubject.initObserver(applicationContext);
         return abstractOAuthSubject;
     }
 
-    private Map<String, AbstractOAuthObserver> getOAuthObserverMap(){
-        return ApplicationContextUtils.getBeanOfType(AbstractOAuthObserver.class);
+    public <T> Map<String, T> getOAuthObserverMap(Class<T> clazz){
+        return ApplicationContextUtils.getBeanOfType(clazz);
     }
 
     @Bean

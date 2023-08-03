@@ -1,4 +1,4 @@
-package com.sim.factorypattern.subject;
+package com.sim.factorypattern.observer.subject;
 
 import com.sim.factorypattern.dto.Provider;
 import lombok.AllArgsConstructor;

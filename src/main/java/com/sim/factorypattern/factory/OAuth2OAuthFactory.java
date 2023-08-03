@@ -3,7 +3,7 @@ package com.sim.factorypattern.factory;
 import com.sim.factorypattern.dto.OAuthRequest;
 import com.sim.factorypattern.dto.OAuthResponse;
 import com.sim.factorypattern.dto.Provider;
-import com.sim.factorypattern.subject.AbstractOAuthSubject;
+import com.sim.factorypattern.observer.subject.AbstractOAuthSubject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
